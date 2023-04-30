@@ -1,21 +1,41 @@
 package Pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class HomePage extends PageBase{
 
     public HomePage(WebDriver driver) {
         super(driver);
     }
-    //Define Element h6 Dashboard
-    @FindBy(xpath = "//*[@id=\"app\"]/div[1]/div[1]/header/div[1]/div[1]/span/h6")
-    WebElement Dashboard ;
+    //Define Element Start for start lite package
+    @FindBy(id = "لايت-selection")
+    WebElement Start ;
+
+    //Define Element currency after wait to load the page elements
+    public void waited(){
+        explicitwait("//*[@id=\"currency-لايت\"]/i");
+    }
+    @FindBy(xpath = "//*[@id=\"currency-لايت\"]/i")
+    WebElement currency ;
+
+    //Define price of lite package as price
+    @FindBy(xpath = "//*[@id=\"currency-لايت\"]/b")
+    WebElement price ;
 
     // Function to get the Page title
-    public  String getTitle()
-    {
-        return Dashboard.getText();
+    public void litePackage(){
+    clickOnElement(Start);
+    }
+    public String validateCurrency(){
+       return getElementText(currency);
+    }
+
+    public String validatePrice(){
+        return  getElementText(price);
     }
 }
