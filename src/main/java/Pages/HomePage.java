@@ -16,16 +16,19 @@ public class HomePage extends PageBase{
     @FindBy(id = "لايت-selection")
     WebElement Start ;
 
+
     //Define Element currency after wait to load the page elements
-    public void waited(){
-        explicitwait("//*[@id=\"currency-لايت\"]/i");
+    public void waited(String path){
+        explicitwait(path);
     }
+
     @FindBy(xpath = "//*[@id=\"currency-لايت\"]/i")
     WebElement currency ;
 
     //Define price of lite package as price
     @FindBy(xpath = "//*[@id=\"currency-لايت\"]/b")
     WebElement price ;
+
 
     // Function to get the Page title
     public void litePackage(){
@@ -38,4 +41,6 @@ public class HomePage extends PageBase{
     public String validatePrice(){
         return  getElementText(price);
     }
+
+
 }

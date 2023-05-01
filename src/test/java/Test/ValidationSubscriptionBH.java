@@ -14,39 +14,39 @@ import org.testng.annotations.Test;
 import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
-public class ValidateSubscriptionKw  extends TestBase{
-    HomePage home1 ;
+public class ValidationSubscriptionBH extends TestBase{
+    HomePage home ;
     SecondPage secondPage;
 
     @FindBy(xpath = "//*[@id=\"currency-لايت\"]/i")
     WebElement currency ;
-    @FindBy(xpath = "//*[@id=\"country-name\"]")
+    @FindBy(xpath = "//*[@id=\"country-btn\"]")
     WebElement switchCountryButton ;
 
-    @FindBy(xpath = "//*[@id=\"kw\"]")
-    WebElement kw ;
+    @FindBy(xpath = "//*[@id=\"bh\"]")
+    WebElement BH ;
 
     @Test(priority = 1)
     public void TestValidateSubscriptionKw()
     {
-        home1 = new HomePage(driver);
+        home = new HomePage(driver);
 //        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-        home1.waited("//*[@id=\"country-name\"]");
-        home1.clickOnElement(switchCountryButton);
-//        home.waited("//*[@id=\"kw\"]");
-//        home.clickOnElement(kw);
-        //assert currency is kw and per month
-        Assert.assertEquals(home1.validateCurrency() ,"دينار كويتي/شهر");
+        home.waited("//*[@id=\"country-btn\"]");
+        home.clickOnElement(switchCountryButton);
+        home.waited("//*[@id=\"bh\"]");
+        home.clickOnElement(BH);
+        //assert currency is BH and per month
+        Assert.assertEquals(home.validateCurrency() ,"دينار بحريني/شهر");
 
-        //Asser price is 1.2 for lite Package
-        Assert.assertEquals(home1.validatePrice(),"1.2");
+        //Asser price is 2 for lite Package
+        Assert.assertEquals(home.validatePrice(),"2");
 
         //go to second page
         //click on Start button for Lite Package
-        home1.litePackage();
+        home.litePackage();
         secondPage = new SecondPage(driver);
-        // Assert STC price is 1.2
-        Assert.assertEquals(secondPage.vaidatePriceAndCurrency(),"دينار كويتي/شهر");
+        // Assert STC price is 2
+        Assert.assertEquals(secondPage.vaidatePriceAndCurrency(),"دينار بحريني/شهر");
 
         //Assert Visa/Master price is 4.8 dollar
         secondPage.visaButtonClick();
